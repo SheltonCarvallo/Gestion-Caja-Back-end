@@ -5,7 +5,7 @@ using ModelLayer.Models;
 
 namespace DataLayer
 {
-    internal class CashAdminDbContext : DbContext
+    public class CashAdminDbContext : DbContext
     {
         public CashAdminDbContext(DbContextOptions<CashAdminDbContext> options) : base(options)
         {

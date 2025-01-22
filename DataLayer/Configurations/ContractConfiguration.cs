@@ -15,7 +15,7 @@ namespace DataLayer.Configurations
         {
             builder
                 .HasKey(e => e.ContractId)
-                .HasName("Contract_FK");
+                .HasName("Contract_PK");
             builder.Property(p => p.StatusContractId).HasMaxLength(3);
             builder
                 .HasOne(e => e.MethodPayment)

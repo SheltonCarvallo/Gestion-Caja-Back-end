@@ -21,5 +21,7 @@ namespace ModelLayer.Models
 
         public UserStatusModel? UserStatus { get; set; }
         public RolModel Rol { get; set; } = null!;
+
+        public List<CashModel> Cashes = [];
     }
 }

@@ -7,5 +7,6 @@ namespace ModelLayer.Models
         public string CashDescription { get; set; } = string.Empty;
         public char active { get; set; }
         public TurnModel? Turn { get; set; }
+        public List<UserModel> Users = [];
     }
 }

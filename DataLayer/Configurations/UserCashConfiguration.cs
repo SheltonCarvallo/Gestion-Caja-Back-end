@@ -18,7 +18,7 @@ namespace DataLayer.Configurations
                .HasName("Relation_user_PK");
             builder
                 .HasKey(e => e.CashId)
-                .HasName("Relation_cash_PK");
+                .HasName("Relation_cash_PK");                
         }
     }
 }

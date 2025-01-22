@@ -1,0 +1,6 @@
+@GestionDeCajas_HostAddress = http://localhost:5207
+
+GET {{GestionDeCajas_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

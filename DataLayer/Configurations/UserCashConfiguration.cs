@@ -13,12 +13,13 @@ namespace DataLayer.Configurations
     {
         public void Configure(EntityTypeBuilder<UserCashModel> builder)
         {
-            builder
+            builder.HasNoKey();
+            /*builder
                .HasKey(e => e.UserId)
                .HasName("Relation_user_PK");
             builder
                 .HasKey(e => e.CashId)
-                .HasName("Relation_cash_PK");                
+                .HasName("Relation_cash_PK");*/                
         }
     }
 }

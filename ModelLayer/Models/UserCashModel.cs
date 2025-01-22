@@ -9,6 +9,7 @@ namespace ModelLayer.Models
     public class UserCashModel
     {
         public int UserId { get; set; }
+        
         public int CashId { get; set; }
     }
 }

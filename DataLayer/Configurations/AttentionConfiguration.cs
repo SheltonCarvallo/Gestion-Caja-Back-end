@@ -26,7 +26,7 @@ namespace DataLayer.Configurations
             builder
                 .HasOne(e => e.AttentionStatus)
                 .WithOne(e => e.Attention)
-                .HasPrincipalKey<AttentionModel>(e => e.AttentionStatusId)
+                .HasForeignKey<AttentionModel>(e => e.AttentionStatusId)
                 .IsRequired();
             builder
                 .HasOne(e => e.Client)

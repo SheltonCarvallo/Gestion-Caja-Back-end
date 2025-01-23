@@ -4,6 +4,7 @@ using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(CashAdminDbContext))]
-    partial class CashAdminDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250123172003_DropFKinAttentionStatus")]
+    partial class DropFKinAttentionStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +33,6 @@ namespace DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AttentionId"));
 
-                    b.Property<int>("AttentionStatusId")
-                        .HasColumnType("int");
-
                     b.Property<string>("AttentionTypeId")
                         .IsRequired()
                         .HasMaxLength(3)
@@ -46,9 +46,6 @@ namespace DataLayer.Migrations
 
                     b.HasKey("AttentionId")
                         .HasName("Attention_PK");
-
-                    b.HasIndex("AttentionStatusId")
-                        .IsUnique();
 
                     b.HasIndex("AttentionTypeId")
                         .IsUnique();
@@ -64,19 +61,10 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("ModelLayer.Models.AttentionStatusModel", b =>
                 {
-                    b.Property<int>("StatusId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusId"));
-
                     b.Property<string>("Descrription")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("StatusId")
-                        .HasName("AttentionStatus_PK");
 
                     b.ToTable("AttentionsStatuses");
                 });
@@ -467,12 +455,6 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("ModelLayer.Models.AttentionModel", b =>
                 {
-                    b.HasOne("ModelLayer.Models.AttentionStatusModel", "AttentionStatus")
-                        .WithOne("Attention")
-                        .HasForeignKey("ModelLayer.Models.AttentionModel", "AttentionStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ModelLayer.Models.AttentionTypeModel", "AttentionType")
                         .WithOne("Attention")
                         .HasForeignKey("ModelLayer.Models.AttentionModel", "AttentionTypeId")
@@ -490,8 +472,6 @@ namespace DataLayer.Migrations
                         .HasForeignKey("ModelLayer.Models.AttentionModel", "TurnId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AttentionStatus");
 
                     b.Navigation("AttentionType");
 
@@ -604,11 +584,6 @@ namespace DataLayer.Migrations
                     b.Navigation("Rol");
 
                     b.Navigation("UserStatus");
-                });
-
-            modelBuilder.Entity("ModelLayer.Models.AttentionStatusModel", b =>
-                {
-                    b.Navigation("Attention");
                 });
 
             modelBuilder.Entity("ModelLayer.Models.AttentionTypeModel", b =>

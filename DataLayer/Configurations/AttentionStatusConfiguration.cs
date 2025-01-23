@@ -16,6 +16,7 @@ namespace DataLayer.Configurations
             builder
                 .HasKey(e => e.StatusId)
                 .HasName("AttentionStatus_PK");
+         
             builder.Property(p => p.Descrription).HasMaxLength(30);
         }
     }

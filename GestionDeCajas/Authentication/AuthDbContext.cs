@@ -1,10 +1,11 @@
 ﻿
+using GestionDeCajas.Authentication.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GestionDeCajas.Authentication
 {
-    public class AuthDbContext : IdentityDbContext
+    public class AuthDbContext : IdentityDbContext<AppUserModel>
     {
         private readonly IConfiguration _configuration;
         public AuthDbContext(DbContextOptions<AuthDbContext> options, IConfiguration configuration)

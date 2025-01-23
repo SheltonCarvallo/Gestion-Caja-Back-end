@@ -1,6 +1,8 @@
 using DataLayer;
 using GestionDeCajas.Authentication;
 using GestionDeCajas.Authentication.Models;
+using GestionDeCajas.Interfaces;
+using GestionDeCajas.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +21,8 @@ namespace GestionDeCajas
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            builder.Services.AddScoped<IRegister, RegisterService>();
 
             builder.Services.AddDbContext<CashAdminDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionDefault")));

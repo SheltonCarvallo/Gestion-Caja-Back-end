@@ -18,10 +18,8 @@ namespace ModelLayer.Models
         public int UserApprovalId { get; set; }
         public DateTime DateApproval { get; set; }
         public string UserStatusId { get; set; } = string.Empty;
-
         public UserStatusModel? UserStatus { get; set; }
         public RolModel Rol { get; set; } = null!;
-
-        public List<CashModel> Cashes = [];
+        public List<UserCashModel> UsersCashes { get; } = [];
     }
 }

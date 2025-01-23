@@ -11,5 +11,8 @@ namespace ModelLayer.Models
         public int UserId { get; set; }
         
         public int CashId { get; set; }
+
+        public UserModel User { get; set; } = null!;
+        public CashModel Cash { get; set; } = null!;
     }
 }

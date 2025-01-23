@@ -13,13 +13,17 @@ namespace DataLayer.Configurations
     {
         public void Configure(EntityTypeBuilder<UserCashModel> builder)
         {
-            builder.HasNoKey();
-            /*builder
-               .HasKey(e => e.UserId)
-               .HasName("Relation_user_PK");
             builder
-                .HasKey(e => e.CashId)
-                .HasName("Relation_cash_PK");*/                
+                .HasKey(e => new { e.UserId, e.CashId });
+
+            builder
+                .HasOne(e => e.User)
+                .WithMany(e => e.UsersCashes)
+                .HasForeignKey(e => e.UserId);
+            builder
+                .HasOne(e => e.Cash)
+                .WithMany(e => e.UsersCashes)
+                .HasForeignKey(e => e.CashId);
         }
     }
 }

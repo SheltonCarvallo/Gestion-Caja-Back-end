@@ -4,13 +4,12 @@ using GestionDeCajas.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Rewrite;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace GestionDeCajas.Authentication
+namespace GestionDeCajas.Authentication.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -35,12 +34,14 @@ namespace GestionDeCajas.Authentication
         {
             return RegisterUserWithRole(registerOrUpdateUserModel, AppRoles.Cajero);
         }
+
+
         private async Task<IActionResult> RegisterUserWithRole(RegisterOrUpdateUserModel newUser, string userRole)
         {
             AppUserModel? existUsername = await userManager.FindByNameAsync(newUser.UserName.Normalize());
             AppUserModel? existEmail = await userManager.FindByEmailAsync(newUser.Email);
 
-            if (existUsername != null ||  existEmail != null) 
+            if (existUsername != null || existEmail != null)
             {
                 ModelState.AddModelError("Register error", "Username or Email are already taken");
                 return BadRequest(ModelState);

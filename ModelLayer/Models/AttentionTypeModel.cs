@@ -10,6 +10,6 @@ namespace ModelLayer.Models
     {
         public string AttentionTypeId { get; set; } = string.Empty;
         public string AttentionDescription { get; set; } = string.Empty;
-        public AttentionModel? Attention { get; set; }
+        public ICollection<AttentionModel> Attentions { get; set; } = new List<AttentionModel>();
     }
 }

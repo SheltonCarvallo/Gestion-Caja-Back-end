@@ -12,7 +12,7 @@ namespace GestionDeCajas.Controllers
     [Route("api/[Controller]")]
     public class ClientController(IClient _client) : Controller
     {
-        [HttpGet("{numberIdentification:string}")]
+        [HttpGet]
         public async Task<ActionResult<ClientModel>> GetClient(string numberIdentification)
         {
             try

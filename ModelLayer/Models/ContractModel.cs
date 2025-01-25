@@ -16,8 +16,8 @@ namespace ModelLayer.Models
         public int ClientId { get; set; } // Required FK 
         public int MethodPaymentId { get; set; }
         public ServiceModel Service { get; set; } = null!;
-        public StatusContractModel? StatusContract { get; set; } = null!;
+        public StatusContractModel StatusContract { get; set; } = null!;
         public ClientModel Client { get; set; } = null!;
-        public MethodPaymentModel? MethodPayment { get; set; }
+        public MethodPaymentModel MethodPayment { get; set; } = null!;
     }
 }

@@ -13,7 +13,11 @@ namespace DataLayer.Configurations
                 .HasName("UserStatus_PK");
             builder.Property(p => p.StatusId).HasMaxLength(3);
             builder.Property(p => p.Description).HasMaxLength(50);
-
+            builder
+                .HasMany(e => e.Users)
+                .WithOne(e => e.UserStatus)
+                .HasForeignKey(e => e.UserStatusId)
+                .IsRequired();
         }
     }
 }

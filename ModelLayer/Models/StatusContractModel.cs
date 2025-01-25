@@ -10,6 +10,6 @@ namespace ModelLayer.Models
     {
         public string StatusContractId { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public ContractModel? Contract { get; set; }
+        public ICollection<ContractModel> Contracts { get; set; } = new List<ContractModel>();
     }
 }

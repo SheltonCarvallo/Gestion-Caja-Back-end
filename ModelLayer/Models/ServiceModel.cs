@@ -12,8 +12,8 @@ namespace ModelLayer.Models
         public string ServiceName { get; set; } = string.Empty;
         public string ServiceDescription { get; set; } = string.Empty;
         public decimal Price { get; set; }
-        public ContractModel? Contract { get; set; }
-        public DeviceModel? Device { get; set; }
+        public ICollection<ContractModel> Contracts { get; set; } = new List<ContractModel>();
+        public ICollection<DeviceModel> Devices { get; set; } = new List<DeviceModel>();
 
     }
 }

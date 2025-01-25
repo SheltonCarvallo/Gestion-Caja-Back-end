@@ -17,11 +17,6 @@ namespace DataLayer.Configurations
                 .HasKey(e => e.TurnId)
                 .HasName("Tun_PK");
             builder.Property(p => p.Description).HasMaxLength(7);
-            builder
-                .HasOne(e => e.Cash)
-                .WithOne(e => e.Turn)
-                .HasForeignKey<TurnModel>(e => e.CashId)
-                .IsRequired();
         }
     }
 }

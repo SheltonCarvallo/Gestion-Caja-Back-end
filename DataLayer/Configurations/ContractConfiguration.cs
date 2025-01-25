@@ -17,26 +17,6 @@ namespace DataLayer.Configurations
                 .HasKey(e => e.ContractId)
                 .HasName("Contract_PK");
             builder.Property(p => p.StatusContractId).HasMaxLength(3);
-            builder
-                .HasOne(e => e.MethodPayment)
-                .WithOne(e => e.Contract)
-                .HasForeignKey<ContractModel>(e => e.MethodPaymentId)
-                .IsRequired();
-            builder
-               .HasOne(e => e.StatusContract)
-               .WithOne(e => e.Contract)
-               .HasForeignKey<ContractModel>(e => e.StatusContractId)
-               .IsRequired();
-            builder
-               .HasOne(e => e.Client)
-               .WithOne(e => e.Contract)
-               .HasForeignKey<ContractModel>(e => e.ClientId)
-               .IsRequired();
-            builder
-               .HasOne(e => e.Service)
-               .WithOne(e => e.Contract)
-               .HasForeignKey<ContractModel>(e => e.ServiceId)
-               .IsRequired();
         }
     }
 }

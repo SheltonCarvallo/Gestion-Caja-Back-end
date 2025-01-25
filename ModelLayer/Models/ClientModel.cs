@@ -34,8 +34,8 @@ namespace ModelLayer.Models
         [Required(ErrorMessage = "Reference address is required"), MinLength(20, ErrorMessage = "Min number of characters 20"), MaxLength(100, ErrorMessage = "Max number of characteres 100")]
         public string ReferenceAddress { get; set; } = string.Empty;
 
-        public ContractModel? Contract { get; set; } // Reference navigation to dependent
-        public AttentionModel? Attention { get; set; }
-        public PaymentsModel? Payments { get; set; }
+        public ICollection<ContractModel> Contracts { get; set; } = new List<ContractModel>();
+        public ICollection<AttentionModel> Attentions { get; set; } = new List<AttentionModel>();
+        public ICollection<PaymentsModel> Payments { get; set; } = new List<PaymentsModel>();
     }
 }

@@ -17,6 +17,11 @@ namespace DataLayer.Configurations
                .HasKey(e => e.RolId)
                .HasName("Rol_PK");
             builder.Property(p => p.RolDescription).HasMaxLength(50);
+            builder
+                .HasMany(e => e.Users)
+                .WithOne(e => e.Rol)
+                .HasForeignKey(e => e.RolId)
+                .IsRequired();
 
         }
     }

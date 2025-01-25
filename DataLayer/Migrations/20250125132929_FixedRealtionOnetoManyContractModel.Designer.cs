@@ -4,6 +4,7 @@ using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(CashAdminDbContext))]
-    partial class CashAdminDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250125132929_FixedRealtionOnetoManyContractModel")]
+    partial class FixedRealtionOnetoManyContractModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,11 +50,14 @@ namespace DataLayer.Migrations
                     b.HasKey("AttentionId")
                         .HasName("Attention_PK");
 
-                    b.HasIndex("AttentionStatusId");
+                    b.HasIndex("AttentionStatusId")
+                        .IsUnique();
 
-                    b.HasIndex("AttentionTypeId");
+                    b.HasIndex("AttentionTypeId")
+                        .IsUnique();
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ClientId")
+                        .IsUnique();
 
                     b.HasIndex("TurnId")
                         .IsUnique();
@@ -229,7 +235,8 @@ namespace DataLayer.Migrations
                     b.HasKey("DeviceId")
                         .HasName("Device_PK");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex("ServiceId")
+                        .IsUnique();
 
                     b.ToTable("Devices");
                 });
@@ -270,7 +277,8 @@ namespace DataLayer.Migrations
                     b.HasKey("PaymentId")
                         .HasName("Payments_PK");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ClientId")
+                        .IsUnique();
 
                     b.ToTable("Payments");
                 });
@@ -364,7 +372,8 @@ namespace DataLayer.Migrations
                     b.HasKey("TurnId")
                         .HasName("Tun_PK");
 
-                    b.HasIndex("CashId");
+                    b.HasIndex("CashId")
+                        .IsUnique();
 
                     b.ToTable("Turns");
                 });
@@ -456,20 +465,20 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("ModelLayer.Models.AttentionModel", b =>
                 {
                     b.HasOne("ModelLayer.Models.AttentionStatusModel", "AttentionStatus")
-                        .WithMany("Attentions")
-                        .HasForeignKey("AttentionStatusId")
+                        .WithOne("Attention")
+                        .HasForeignKey("ModelLayer.Models.AttentionModel", "AttentionStatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ModelLayer.Models.AttentionTypeModel", "AttentionType")
-                        .WithMany("Attentions")
-                        .HasForeignKey("AttentionTypeId")
+                        .WithOne("Attention")
+                        .HasForeignKey("ModelLayer.Models.AttentionModel", "AttentionTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ModelLayer.Models.ClientModel", "Client")
-                        .WithMany("Attentions")
-                        .HasForeignKey("ClientId")
+                        .WithOne("Attention")
+                        .HasForeignKey("ModelLayer.Models.AttentionModel", "ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -526,8 +535,8 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("ModelLayer.Models.DeviceModel", b =>
                 {
                     b.HasOne("ModelLayer.Models.ServiceModel", "Service")
-                        .WithMany("Devices")
-                        .HasForeignKey("ServiceId")
+                        .WithOne("Device")
+                        .HasForeignKey("ModelLayer.Models.DeviceModel", "ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -537,8 +546,8 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("ModelLayer.Models.PaymentsModel", b =>
                 {
                     b.HasOne("ModelLayer.Models.ClientModel", "Client")
-                        .WithMany("Payments")
-                        .HasForeignKey("ClientId")
+                        .WithOne("Payments")
+                        .HasForeignKey("ModelLayer.Models.PaymentsModel", "ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -548,8 +557,8 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("ModelLayer.Models.TurnModel", b =>
                 {
                     b.HasOne("ModelLayer.Models.CashModel", "Cash")
-                        .WithMany("Turns")
-                        .HasForeignKey("CashId")
+                        .WithOne("Turn")
+                        .HasForeignKey("ModelLayer.Models.TurnModel", "CashId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -596,24 +605,24 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("ModelLayer.Models.AttentionStatusModel", b =>
                 {
-                    b.Navigation("Attentions");
+                    b.Navigation("Attention");
                 });
 
             modelBuilder.Entity("ModelLayer.Models.AttentionTypeModel", b =>
                 {
-                    b.Navigation("Attentions");
+                    b.Navigation("Attention");
                 });
 
             modelBuilder.Entity("ModelLayer.Models.CashModel", b =>
                 {
-                    b.Navigation("Turns");
+                    b.Navigation("Turn");
 
                     b.Navigation("UsersCashes");
                 });
 
             modelBuilder.Entity("ModelLayer.Models.ClientModel", b =>
                 {
-                    b.Navigation("Attentions");
+                    b.Navigation("Attention");
 
                     b.Navigation("Contracts");
 
@@ -634,7 +643,7 @@ namespace DataLayer.Migrations
                 {
                     b.Navigation("Contracts");
 
-                    b.Navigation("Devices");
+                    b.Navigation("Device");
                 });
 
             modelBuilder.Entity("ModelLayer.Models.StatusContractModel", b =>

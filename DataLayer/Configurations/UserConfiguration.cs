@@ -14,7 +14,7 @@ namespace DataLayer.Configurations
             builder.Property(p => p.UserName).HasMaxLength(50);
             builder.Property(p => p.Email).HasMaxLength(100);
             builder.Property(p => p.Password).HasMaxLength(100);
-            builder
+            /*builder
                 .HasOne(e => e.Rol)
                 .WithOne(e => e.User)
                 .HasForeignKey<UserModel>(e => e.RolId)
@@ -24,7 +24,7 @@ namespace DataLayer.Configurations
                 .HasOne(e => e.UserStatus)
                 .WithOne(e => e.User)
                 .HasForeignKey<UserModel>(e => e.UserStatusId)
-                .IsRequired();
+                .IsRequired();*/
         }
     }
 }

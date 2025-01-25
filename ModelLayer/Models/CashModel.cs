@@ -6,7 +6,7 @@ namespace ModelLayer.Models
         public int CashId { get; set; }
         public string CashDescription { get; set; } = string.Empty;
         public char active { get; set; }
-        public TurnModel? Turn { get; set; }
+        public ICollection<TurnModel> Turns { get; set; } = new List<TurnModel>();  
         public List<UserCashModel> UsersCashes { get; } = [];
     }
 }

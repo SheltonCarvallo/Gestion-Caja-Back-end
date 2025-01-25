@@ -11,6 +11,6 @@ namespace ModelLayer.Models
         public int RolId { get; set; }
         public string RolDescription { get; set; } = string.Empty;
 
-        public UserModel? User { get; set; }
+        public  ICollection<UserModel> Users { get; set; } = new List<UserModel>();
     }
 }

@@ -17,6 +17,11 @@ namespace DataLayer.Configurations
                 .HasKey(e => e.MethodPaymentId)
                 .HasName("MethodPayment_PK");
             builder.Property(p => p.Description).HasMaxLength(50);
+            builder
+                .HasMany(e => e.Contracts)
+                .WithOne(e => e.MethodPayment)
+                .HasForeignKey(e => e.MethodPaymentId)
+                .IsRequired();
         }
     }
 }

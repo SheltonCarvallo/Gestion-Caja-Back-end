@@ -23,6 +23,7 @@ namespace GestionDeCajas
             builder.Services.AddControllers();
 
             builder.Services.AddScoped<IRegister, RegisterService>();
+            builder.Services.AddScoped<IClient, ClientService>();
 
             builder.Services.AddDbContext<CashAdminDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionDefault")));

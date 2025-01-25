@@ -4,6 +4,7 @@ using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(CashAdminDbContext))]
-    partial class CashAdminDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250125135151_FixedRealtionOnetoManyInSeveralModels")]
+    partial class FixedRealtionOnetoManyInSeveralModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -229,7 +232,8 @@ namespace DataLayer.Migrations
                     b.HasKey("DeviceId")
                         .HasName("Device_PK");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex("ServiceId")
+                        .IsUnique();
 
                     b.ToTable("Devices");
                 });
@@ -526,8 +530,8 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("ModelLayer.Models.DeviceModel", b =>
                 {
                     b.HasOne("ModelLayer.Models.ServiceModel", "Service")
-                        .WithMany("Devices")
-                        .HasForeignKey("ServiceId")
+                        .WithOne("Device")
+                        .HasForeignKey("ModelLayer.Models.DeviceModel", "ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -634,7 +638,7 @@ namespace DataLayer.Migrations
                 {
                     b.Navigation("Contracts");
 
-                    b.Navigation("Devices");
+                    b.Navigation("Device");
                 });
 
             modelBuilder.Entity("ModelLayer.Models.StatusContractModel", b =>

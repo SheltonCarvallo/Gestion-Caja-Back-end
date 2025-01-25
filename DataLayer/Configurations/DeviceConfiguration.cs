@@ -12,11 +12,6 @@ namespace DataLayer.Configurations
                 .HasKey(e => e.DeviceId)
                 .HasName("Device_PK");
             builder.Property(p => p.DeviceName).HasMaxLength(50);
-            builder
-               .HasOne(e => e.Service)
-               .WithOne(e => e.Device)
-               .HasForeignKey<DeviceModel>(e => e.ServiceId)
-               .IsRequired();
         }
     }
 }

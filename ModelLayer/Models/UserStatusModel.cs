@@ -11,6 +11,6 @@ namespace ModelLayer.Models
         public string StatusId { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
 
-        public UserModel? User { get; set; }
+        public ICollection<UserModel> Users { get; set; } = new List<UserModel>();
     }
 }

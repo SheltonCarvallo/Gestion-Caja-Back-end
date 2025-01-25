@@ -18,6 +18,11 @@ namespace DataLayer.Configurations
             .HasName("StatusContract_PK");
             builder.Property(e => e.StatusContractId).HasMaxLength(3);
             builder.Property(p => p.Description).HasMaxLength(50);
+            builder
+                .HasMany(e => e.Contracts)
+                .WithOne(e => e.StatusContract)
+                .HasForeignKey(e => e.StatusContractId)
+                .IsRequired();
         }
     }
 }

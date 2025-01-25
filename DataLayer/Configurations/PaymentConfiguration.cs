@@ -16,11 +16,6 @@ namespace DataLayer.Configurations
             builder
                 .HasKey(e => e.PaymentId)
                 .HasName("Payments_PK");
-            builder
-                .HasOne(e => e.Client)
-                .WithOne(e => e.Payments)
-                .HasForeignKey<PaymentsModel>(e => e.ClientId)
-                .IsRequired();
         }
     }
 }

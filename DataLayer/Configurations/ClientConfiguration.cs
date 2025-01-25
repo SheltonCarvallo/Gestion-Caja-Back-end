@@ -23,6 +23,21 @@ namespace DataLayer.Configurations
             builder.Property(p => p.PhoneNumber).HasMaxLength(13);
             builder.Property(p => p.Address).HasMaxLength(100);
             builder.Property(p => p.ReferenceAddress).HasMaxLength(100);
+            builder
+                .HasMany(e => e.Contracts)
+                .WithOne(e => e.Client)
+                .HasForeignKey(e => e.ClientId)
+                .IsRequired();
+            builder
+                .HasMany(e => e.Payments)
+                .WithOne(e => e.Client)
+                .HasForeignKey(e => e.ClientId)
+                .IsRequired();
+            builder
+                .HasMany(e => e.Attentions)
+                .WithOne(e => e.Client)
+                .HasForeignKey(e => e.ClientId)
+                .IsRequired(); 
 
         }
     }

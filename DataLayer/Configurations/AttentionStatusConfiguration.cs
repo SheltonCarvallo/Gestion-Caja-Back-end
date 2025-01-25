@@ -18,6 +18,11 @@ namespace DataLayer.Configurations
                 .HasName("AttentionStatus_PK");
          
             builder.Property(p => p.Descrription).HasMaxLength(30);
+            builder
+                .HasMany(e => e.Attentions)
+                .WithOne(e => e.AttentionStatus)
+                .HasForeignKey(e => e.AttentionStatusId)
+                .IsRequired();
         }
     }
 }

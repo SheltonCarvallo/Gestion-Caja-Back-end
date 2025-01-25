@@ -18,22 +18,6 @@ namespace DataLayer.Configurations
                   .HasName("Attention_PK");
             builder.Property(p => p.AttentionTypeId).HasMaxLength(3);
             builder
-                .HasOne(e => e.AttentionType)
-                .WithOne(e => e.Attention)
-                .HasForeignKey<AttentionModel>(e => e.AttentionTypeId)
-                .IsRequired();
-
-            builder
-                .HasOne(e => e.AttentionStatus)
-                .WithOne(e => e.Attention)
-                .HasForeignKey<AttentionModel>(e => e.AttentionStatusId)
-                .IsRequired();
-            builder
-                .HasOne(e => e.Client)
-                .WithOne(e => e.Attention)
-                .HasForeignKey<AttentionModel>(e => e.ClientId)
-                .IsRequired();
-            builder
                 .HasOne(e => e.Turn)
                 .WithOne(e => e.Attention)
                 .HasForeignKey<AttentionModel>(e => e.TurnId)

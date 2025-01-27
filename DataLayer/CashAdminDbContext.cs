@@ -18,7 +18,7 @@ namespace DataLayer
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("data source=DESKTOP-REDKEOB;initial catalog=CashAdministratorDevelopment;user id= PortalApi;password=123456;TrustServerCertificate=True;MultipleActiveResultSets=true");
+            => optionsBuilder.UseSqlServer("Data Source=VMT-SCARVALLO\\SQLEXPRESS;initial catalog=CashAdministratorDevelopment;Integrated Security=True;Encrypt=False;Trust Server Certificate=True");
 
 
         public DbSet<UserModel> Users => Set<UserModel>();

@@ -1,5 +1,4 @@
-﻿using GestionDeCajas.Authentication.Models;
-using GestionDeCajas.Interfaces;
+﻿using GestionDeCajas.Interfaces;
 using GestionDeCajas.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

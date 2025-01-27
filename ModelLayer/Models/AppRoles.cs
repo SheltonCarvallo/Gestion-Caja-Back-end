@@ -1,4 +1,4 @@
-﻿namespace GestionDeCajas.Authentication.Models
+﻿namespace ModelLayer.Models
 {
     public static class AppRoles
     {
@@ -8,4 +8,5 @@
         public const string Cliente = "Cliente";
 
     }
+
 }

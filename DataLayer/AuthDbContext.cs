@@ -1,9 +1,9 @@
-﻿
-using GestionDeCajas.Authentication.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using ModelLayer.Models;
 
-namespace GestionDeCajas.Authentication
+namespace DataLayer
 {
     public class AuthDbContext : IdentityDbContext<AppUserModel>
     {

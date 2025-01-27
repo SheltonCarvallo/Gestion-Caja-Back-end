@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GestionDeCajas.Migrations
+namespace DataLayer.Migrations
 {
     /// <inheritdoc />
     public partial class InitialAuthDb : Migration

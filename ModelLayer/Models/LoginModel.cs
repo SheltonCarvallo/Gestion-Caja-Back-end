@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GestionDeCajas.Authentication.Models
+namespace ModelLayer.Models
 {
     public class LoginModel
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-
-namespace GestionDeCajas.Authentication.Models
-{
+namespace ModelLayer.Models
+{ 
     public class AppUserModel : IdentityUser
     {
     }
+
 }
